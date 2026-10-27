@@ -1,0 +1,16 @@
+{
+  "name": "DigiFront Door",
+  "short_name": "DigiFront",
+  "description": "Websites for local businesses & Google Business Profile integration",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#1b1a2e",
+  "theme_color": "#1b1a2e",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

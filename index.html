@@ -1,292 +1,866 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DigiFront Door | Websites for local businesses</title>
-<meta name="description" content="We add a website to your Google profile so customers stop leaving and start calling.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#1b1a2e;
-  --paper:#ffffff;
-  --accent:#e8742f;
-  --muted:#4a4860;
-  --night:#1b1a2e;
-  --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
-body{font-family:var(--font);color:var(--ink);background:var(--night);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:999px}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DigiFront Door | Websites for Local Businesses & Google Profile Integration</title>
+  <meta name="description" content="DigiFront Door builds fast, custom websites connected directly to your Google Business Profile so customers stop leaving and start calling.">
+  <meta name="keywords" content="web development for local businesses, google business profile website, custom web design, small business website, landing page development, affordable web design">
+  <meta name="author" content="DigiFront Door">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zenova-affiliates.github.io/digifront-door/">
 
-/* Loading line */
-.load{position:fixed;inset:0 0 auto 0;height:2px;z-index:60;background:transparent;pointer-events:none}
-.load i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s linear,opacity .4s .2s}
-.load.done i{opacity:0}
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zenova-affiliates.github.io/digifront-door/">
+  <meta property="og:title" content="DigiFront Door | Websites for Local Businesses">
+  <meta property="og:description" content="We add a high-converting website to your Google profile so local searches turn into phone calls and paying clients.">
+  <meta property="og:image" content="https://zenova-affiliates.github.io/digifront-door/frames/frame_001.webp">
 
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DigiFront Door | Websites for Local Businesses">
+  <meta name="twitter:description" content="We connect your Google profile with a custom, high-speed website to maximize local calls and inquiries.">
+  <meta name="twitter:image" content="https://zenova-affiliates.github.io/digifront-door/frames/frame_001.webp">
 
-/* Loading gate */
-.gate{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:var(--night);color:#fff;transition:opacity .5s ease}
-.gate.off{opacity:0;pointer-events:none}
-.gate b{font-size:18px;font-weight:700;letter-spacing:-.01em}
-.gate .gbar{width:min(220px,50vw);height:3px;border-radius:3px;background:rgba(255,255,255,.18);overflow:hidden}
-.gate .gbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .15s linear}
-.gate span{font-size:12px;color:#a9a7c4;font-variant-numeric:tabular-nums}
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-/* Nav pill */
-.nav{position:fixed;top:calc(24px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:50;
-  display:flex;align-items:center;gap:36px;padding:8px 8px 8px 20px;background:var(--paper);border-radius:999px;
-  box-shadow:0 6px 24px rgba(27,26,46,.10);max-width:calc(100% - 24px)}
-.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:17px;letter-spacing:-.01em;white-space:nowrap}
-.logo svg{width:20px;height:20px;flex:none}
-.links{display:flex;gap:28px;font-size:13.5px;font-weight:500;color:var(--muted)}
-.links a{padding:6px 0;transition:color .15s ease}
-.links a:hover,.links a[aria-current]{color:var(--ink)}
-.btn-dark{display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0 20px;border-radius:999px;background:var(--ink);color:#fff;font-size:13.5px;font-weight:600;white-space:nowrap;transition:transform .15s ease,background .15s ease}
-.btn-dark:hover{background:#2d2b4a}
-.btn-dark:active{transform:scale(.97)}
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/home-scroll.css">
 
-/* Scroll stage */
-.track{position:relative;height:640vh}
-.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#a9a2c4}
-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.veil{position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(255,255,255,.38) 0%,rgba(255,255,255,0) 42%)}
-
-/* Hero copy */
-.hero{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-  padding:calc(16svh + env(safe-area-inset-top,0px)) 24px 0;text-align:center;will-change:opacity,transform}
-.badge{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.62);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13px;font-weight:500}
-h1{margin-top:22px;font-size:clamp(44px,7.4vw,92px);line-height:1.02;font-weight:600;letter-spacing:-.04em;text-wrap:balance}
-.sub{margin-top:18px;max-width:34ch;font-size:clamp(16px,1.7vw,21px);line-height:1.4;font-weight:400;color:var(--ink);text-wrap:balance}
-.cta{margin-top:34px;display:flex;align-items:center;gap:26px}
-.btn-light{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 24px;border-radius:999px;background:#fff;color:var(--ink);
-  font-size:15px;font-weight:600;box-shadow:0 8px 22px rgba(27,26,46,.22);transition:transform .15s ease,box-shadow .15s ease}
-.btn-light:hover{box-shadow:0 10px 26px rgba(27,26,46,.28)}
-.btn-light:active{transform:scale(.97)}
-.btn-text{font-size:15px;font-weight:500;padding:12px 2px;background:none;border:0;color:var(--ink);font-family:inherit;cursor:pointer}
-.btn-text:hover{text-decoration:underline;text-underline-offset:4px}
-.scroll{position:absolute;left:50%;bottom:calc(36px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;align-items:center;gap:10px;
-  height:36px;padding:0 22px;border-radius:999px;background:rgba(27,26,46,.38);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  color:#fff;font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;white-space:nowrap}
-.scroll svg{width:12px;height:12px}
-
-/* Scroll captions */
-.cap{position:absolute;left:clamp(24px,7vw,120px);top:40%;max-width:min(30rem,calc(100% - 48px));opacity:0;transform:translateY(-50%);will-change:opacity,transform}
-.cap{text-shadow:0 0 22px rgba(255,255,255,.75),0 0 8px rgba(255,255,255,.55)}
-.cap h2{font-size:clamp(30px,4.2vw,56px);line-height:1.06;font-weight:600;letter-spacing:-.035em;text-wrap:balance}
-.cap p{margin-top:14px;font-size:clamp(16px,1.5vw,19px);line-height:1.5;color:var(--ink);max-width:36ch}
-
-/* Closing */
-.close{background:var(--night);color:#fff;padding:clamp(80px,14vw,160px) 24px calc(48px + env(safe-area-inset-bottom,0px));text-align:center}
-.close h2{font-size:clamp(34px,5.6vw,72px);line-height:1.04;font-weight:600;letter-spacing:-.04em;text-wrap:balance;max-width:16ch;margin:0 auto}
-.close p{margin:20px auto 0;max-width:40ch;font-size:clamp(16px,1.5vw,19px);line-height:1.5;color:#c9c7dc}
-.close .cta{justify-content:center;flex-wrap:wrap;gap:14px}
-.close .btn-light{box-shadow:none}
-.btn-ghost{display:inline-flex;align-items:center;height:48px;padding:0 24px;border-radius:999px;border:1px solid rgba(255,255,255,.28);color:#fff;font-size:15px;font-weight:600;transition:background .15s ease,transform .15s ease}
-.btn-ghost:hover{background:rgba(255,255,255,.08)}
-.btn-ghost:active{transform:scale(.97)}
-footer{margin-top:clamp(64px,10vw,120px);font-size:13px;color:#8d8aa8}
-
-@media (max-width:760px){
-  .nav{gap:14px;padding-left:16px;top:calc(14px + env(safe-area-inset-top,0px))}
-  .links{display:none}
-  .cta{gap:14px}
-  .hero{padding-top:calc(15svh + env(safe-area-inset-top,0px))}
-  .cap{top:22svh;bottom:auto;transform:none}
-  .veil{background:linear-gradient(180deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,0) 50%)}
-}
-@media (prefers-reduced-motion:reduce){
-  .btn-dark,.btn-light,.btn-ghost,.load i{transition:none}
-}
-</style>
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "DigiFront Door",
+    "image": "https://zenova-affiliates.github.io/digifront-door/frames/frame_001.webp",
+    "url": "https://zenova-affiliates.github.io/digifront-door/",
+    "telephone": "03316479439",
+    "email": "digifrontdoor7@gmail.com",
+    "priceRange": "$$",
+    "description": "Custom web development, high-converting landing pages, and Google Business Profile website integration for local businesses.",
+    "serviceArea": "Worldwide",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Web Development Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom Business Websites"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Google Business Profile Integration"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "High-Converting Landing Pages"
+          }
+        }
+      ]
+    }
+  }
+  </script>
 </head>
 <body>
 
-<div class="gate" id="gate" role="status" aria-live="polite"><b>DigiFront Door</b><div class="gbar"><i id="gateBar"></i></div><span id="gatePct">0%</span></div>
-<div class="load" id="load" aria-hidden="true"><i id="loadBar"></i></div>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<header class="nav">
-  <a class="logo" href="#top" aria-label="DigiFront Door home">
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="1.5" width="12" height="17" rx="2" stroke="#e8742f" stroke-width="2"/><circle cx="12.5" cy="10.5" r="1.3" fill="#e8742f"/></svg>
-    DigiFront Door
-  </a>
-  <nav class="links" aria-label="Primary">
-    <a href="#top" aria-current="page">Home</a>
-    <a href="#how" data-seek="0.2">How it works</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <a class="btn-dark" href="#contact">Get started</a>
-</header>
+  <!-- Loading Gate (Enhanced with Fail-Safe Timeout & Skip Intro) -->
+  <div class="gate" id="gate" role="status" aria-live="polite">
+    <b>
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="1.5" width="12" height="17" rx="2" stroke="#e8742f" stroke-width="2"/><circle cx="12.5" cy="10.5" r="1.3" fill="#e8742f"/></svg>
+      DigiFront Door
+    </b>
+    <div class="gbar"><i id="gateBar"></i></div>
+    <div class="gate-status-row">
+      <span id="gatePct">0%</span>
+      <button type="button" class="gate-skip-btn" id="gateSkip">Skip Intro &rarr;</button>
+    </div>
+  </div>
 
-<main id="top">
-  <section class="track" id="track" aria-label="DigiFront Door introduction">
-    <div class="stage" id="stage">
-      <canvas id="cv" role="img" aria-label="A white door standing open in a flower meadow; the camera moves through it."></canvas>
-      <div class="veil"></div>
+  <!-- Loading Line -->
+  <div class="load" id="load" aria-hidden="true"><i id="loadBar"></i></div>
 
-      <div class="hero" id="hero">
-        <span class="badge">Websites for local businesses &#127969;</span>
-        <h1>Open your door online.</h1>
-        <p class="sub">We add a website to your Google profile, so customers stop leaving and start calling.</p>
-        <div class="cta">
-          <a class="btn-light" href="#contact">Get started <span aria-hidden="true">&rarr;</span></a>
-          <button class="btn-text" type="button" data-seek="0.2">See how it works</button>
+  <!-- Navigation Pill (Preserved Original Aesthetic + Full Navigation) -->
+  <header class="nav" role="banner">
+    <a class="logo" href="index.html#top" aria-label="DigiFront Door home">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="4" y="1.5" width="12" height="17" rx="2" stroke="#e8742f" stroke-width="2"/>
+        <circle cx="12.5" cy="10.5" r="1.3" fill="#e8742f"/>
+      </svg>
+      DigiFront Door
+    </a>
+    
+    <nav aria-label="Primary navigation">
+      <ul class="nav-links">
+        <li><a href="index.html#top" aria-current="page">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn-dark" href="contact.html">Get started</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true"></div>
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+    <div>
+      <div class="mobile-nav-header">
+        <a class="logo" href="index.html">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="1.5" width="12" height="17" rx="2" stroke="#e8742f" stroke-width="2"/><circle cx="12.5" cy="10.5" r="1.3" fill="#e8742f"/></svg>
+          DigiFront Door
+        </a>
+        <button class="mobile-nav-close" id="navClose" type="button" aria-label="Close navigation menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="index.html#top" class="active"><span>Home</span><span class="indicator"></span></a></li>
+        <li><a href="services.html"><span>Services</span><span class="indicator"></span></a></li>
+        <li><a href="projects.html"><span>Projects</span><span class="indicator"></span></a></li>
+        <li><a href="pricing.html"><span>Pricing &amp; Calculator</span><span class="indicator"></span></a></li>
+        <li><a href="how-it-works.html"><span>How It Works</span><span class="indicator"></span></a></li>
+        <li><a href="about.html"><span>About Us</span><span class="indicator"></span></a></li>
+        <li><a href="faq.html"><span>FAQ</span><span class="indicator"></span></a></li>
+        <li><a href="contact.html"><span>Contact</span><span class="indicator"></span></a></li>
+      </ul>
+    </div>
+    <div class="mobile-nav-footer">
+      <a class="btn-accent" href="contact.html" style="width:100%; text-align:center;">Request a Free Quote &rarr;</a>
+      <div class="mobile-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <a href="mailto:digifrontdoor7@gmail.com">digifrontdoor7@gmail.com</a>
+      </div>
+      <div class="mobile-contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <a href="tel:03316479439">03316479439</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN SCROLL STAGE & CINEMATIC EXPERIENCE -->
+  <main id="top">
+    <!-- Preserved Original Door Scroll Stage -->
+    <section class="track" id="track" aria-label="DigiFront Door introduction animation">
+      <div class="stage" id="stage">
+        <canvas id="cv" role="img" aria-label="A white door standing open in a flower meadow; the camera moves through it."></canvas>
+        <div class="veil"></div>
+
+        <!-- Preserved Hero Copy -->
+        <div class="hero" id="hero">
+          <span class="badge">Websites for local businesses &#127969;</span>
+          <h1>Open your door online.</h1>
+          <p class="sub">We add a website to your Google profile, so customers stop leaving and start calling.</p>
+          <div class="cta">
+            <a class="btn-light" href="contact.html">Get started <span aria-hidden="true">&rarr;</span></a>
+            <button class="btn-text" type="button" data-seek="0.2">See how it works</button>
+            <button class="btn-text" type="button" id="skipToContent">Jump to services &darr;</button>
+          </div>
+        </div>
+
+        <!-- Preserved Scroll Captions -->
+        <div class="cap" id="cap1">
+          <h2>Customers check Google before they call.</h2>
+          <p>If your profile has no website, many of them move on to the next business.</p>
+        </div>
+        <div class="cap" id="cap2">
+          <h2>We open the door for you.</h2>
+          <p>A fast, simple website, connected to your Google profile, so more searches turn into leads.</p>
+        </div>
+
+        <div class="scroll" id="hint" aria-hidden="true">Scroll
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1.5v9M2.5 7 6 10.5 9.5 7"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT SECTIONS (Seamlessly continuing after animation) -->
+    <div id="main-content">
+
+      <!-- SECTION A: SERVICES PREVIEW -->
+      <section class="section section-light" id="services-preview" aria-labelledby="services-title">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-light">What We Do</span>
+            <h2 class="section-title" id="services-title">Websites engineered to turn searches into clients.</h2>
+            <p class="section-subtitle">We don't build generic bloated templates. We build bespoke, lightning-fast digital storefronts that connect directly with your local presence.</p>
+          </div>
+
+          <div class="bento-grid">
+            <!-- Service 1 -->
+            <div class="card card-light" style="grid-column: span 6;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </div>
+              <h3 class="card-title">Google Business Profile Integration</h3>
+              <p class="card-desc">Add a verified, high-speed website link to your Google Maps &amp; Search listing. Includes direct click-to-call buttons, service menus, and review sync to stop prospect drop-off.</p>
+              <ul class="card-feature-list">
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Immediate Google profile linking &amp; appointment URL sync</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Mobile-first tap-to-call &amp; map navigation directions</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Local SEO schema markup for local search discovery</li>
+              </ul>
+              <a href="services.html#google-integration" class="btn-text">Learn more &rarr;</a>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="card card-light" style="grid-column: span 6;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <h3 class="card-title">Custom Business Websites</h3>
+              <p class="card-desc">Modern multi-page websites tailored for clinics, trade contractors, legal firms, cafes, and growing local service companies. Designed from scratch to showcase credibility.</p>
+              <ul class="card-feature-list">
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Handcrafted design matching your exact brand personality</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Responsive layouts tested across 320px to 4K displays</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Lead inquiry forms with instant email notifications</li>
+              </ul>
+              <a href="services.html#custom-business" class="btn-text">Learn more &rarr;</a>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="card card-light" style="grid-column: span 4;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </div>
+              <h3 class="card-title">High-Converting Landing Pages</h3>
+              <p class="card-desc">Single-purpose pages built specifically for paid Google/Meta ads and targeted promotional campaigns to maximize direct leads.</p>
+              <a href="services.html#landing-pages" class="btn-text">View details &rarr;</a>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="card card-light" style="grid-column: span 4;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+              </div>
+              <h3 class="card-title">Fast E-commerce &amp; Ordering</h3>
+              <p class="card-desc">Friction-free online catalogs, digital product showcases, and ordering systems tailored for local pickup and retail delivery.</p>
+              <a href="services.html#ecommerce" class="btn-text">View details &rarr;</a>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="card card-light" style="grid-column: span 4;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <h3 class="card-title">Care &amp; Maintenance Plans</h3>
+              <p class="card-desc">Ongoing updates, automated backups, speed tuning, and technical peace of mind so your business never goes offline.</p>
+              <a href="services.html#maintenance" class="btn-text">View details &rarr;</a>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 48px;">
+            <a href="services.html" class="btn-dark">Explore All 8 Services &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION B: FEATURED PROJECTS (BENTO GRID SHOWCASE) -->
+      <section class="section section-dark" id="featured-projects" aria-labelledby="projects-title">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-accent">Portfolio Showcase</span>
+            <h2 class="section-title" id="projects-title">Handcrafted work built for real business results.</h2>
+            <p class="section-subtitle">Explore selected project demos and concept builds showing how we turn local profiles into authoritative client magnets.</p>
+          </div>
+
+          <div class="bento-grid">
+            <!-- Project 1: Apex Dental -->
+            <div class="card card-dark project-card" style="grid-column: span 6;">
+              <div class="project-thumb">
+                <div class="project-mockup">
+                  <div class="mockup-bar">
+                    <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+                  </div>
+                  <div class="mockup-screen">
+                    <div class="mockup-header-line" style="background:#0284c7;"></div>
+                    <div class="mockup-sub-line"></div>
+                    <div class="mockup-grid-sim">
+                      <div class="mockup-box-sim"></div>
+                      <div class="mockup-box-sim"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-header-meta">
+                  <span class="project-category" style="color:#38bdf8;">Medical &amp; Clinic</span>
+                  <span class="project-status-tag">Concept Demo</span>
+                </div>
+                <h3 class="project-title">Apex Dental Care</h3>
+                <p class="project-tagline">High-trust medical practice site converting Google Maps searches into direct private dental bookings.</p>
+                <div class="tech-pills">
+                  <span class="tech-pill">Google Profile Sync</span>
+                  <span class="tech-pill">Instant Booking</span>
+                  <span class="tech-pill">Local SEO</span>
+                </div>
+                <div class="project-actions">
+                  <button type="button" class="btn-ghost" data-open-project="apex-dental">View Case Study</button>
+                  <a href="contact.html?project=Apex%20Dental%20Care" class="btn-accent">Build Similar</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2: Forge & Oak -->
+            <div class="card card-dark project-card" style="grid-column: span 6;">
+              <div class="project-thumb">
+                <div class="project-mockup">
+                  <div class="mockup-bar">
+                    <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+                  </div>
+                  <div class="mockup-screen">
+                    <div class="mockup-header-line" style="background:#d97706;"></div>
+                    <div class="mockup-sub-line"></div>
+                    <div class="mockup-grid-sim">
+                      <div class="mockup-box-sim"></div>
+                      <div class="mockup-box-sim"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-header-meta">
+                  <span class="project-category" style="color:#fbbf24;">Trades &amp; Craft</span>
+                  <span class="project-status-tag">Concept Demo</span>
+                </div>
+                <h3 class="project-title">Forge &amp; Oak Joinery</h3>
+                <p class="project-tagline">Bespoke architectural woodworking portfolio designed to win high-ticket residential renovation contracts.</p>
+                <div class="tech-pills">
+                  <span class="tech-pill">HD Visual Gallery</span>
+                  <span class="tech-pill">Quote Estimator</span>
+                  <span class="tech-pill">Mobile First</span>
+                </div>
+                <div class="project-actions">
+                  <button type="button" class="btn-ghost" data-open-project="forge-craft">View Case Study</button>
+                  <a href="contact.html?project=Forge%20and%20Oak" class="btn-accent">Build Similar</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 3: Lumina Skin -->
+            <div class="card card-dark project-card" style="grid-column: span 6;">
+              <div class="project-thumb">
+                <div class="project-mockup">
+                  <div class="mockup-bar">
+                    <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+                  </div>
+                  <div class="mockup-screen">
+                    <div class="mockup-header-line" style="background:#ec4899;"></div>
+                    <div class="mockup-sub-line"></div>
+                    <div class="mockup-grid-sim">
+                      <div class="mockup-box-sim"></div>
+                      <div class="mockup-box-sim"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-header-meta">
+                  <span class="project-category" style="color:#f472b6;">Landing Page</span>
+                  <span class="project-status-tag">Concept Demo</span>
+                </div>
+                <h3 class="project-title">Lumina Aesthetic Clinic</h3>
+                <p class="project-tagline">High-converting Google Ads landing page focused on laser skincare packages and consultation bookings.</p>
+                <div class="tech-pills">
+                  <span class="tech-pill">&lt;1s Load Time</span>
+                  <span class="tech-pill">Ad Funnel</span>
+                  <span class="tech-pill">WhatsApp Chat</span>
+                </div>
+                <div class="project-actions">
+                  <button type="button" class="btn-ghost" data-open-project="lumina-skin">View Case Study</button>
+                  <a href="contact.html?project=Lumina%20Clinic" class="btn-accent">Build Similar</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 4: Verde Botanica -->
+            <div class="card card-dark project-card" style="grid-column: span 6;">
+              <div class="project-thumb">
+                <div class="project-mockup">
+                  <div class="mockup-bar">
+                    <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
+                  </div>
+                  <div class="mockup-screen">
+                    <div class="mockup-header-line" style="background:#10b981;"></div>
+                    <div class="mockup-sub-line"></div>
+                    <div class="mockup-grid-sim">
+                      <div class="mockup-box-sim"></div>
+                      <div class="mockup-box-sim"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-header-meta">
+                  <span class="project-category" style="color:#34d399;">Local E-commerce</span>
+                  <span class="project-status-tag">Concept Demo</span>
+                </div>
+                <h3 class="project-title">Verde Artisanal Coffee</h3>
+                <p class="project-tagline">Neighborhood cafe storefront with seamless local pickup, bean subscriptions, and Google Map menus.</p>
+                <div class="tech-pills">
+                  <span class="tech-pill">Quick Cart Drawer</span>
+                  <span class="tech-pill">Pickup Timing</span>
+                  <span class="tech-pill">Micro-interactions</span>
+                </div>
+                <div class="project-actions">
+                  <button type="button" class="btn-ghost" data-open-project="verde-botanica">View Case Study</button>
+                  <a href="contact.html?project=Verde%20Coffee" class="btn-accent">Build Similar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 48px;">
+            <a href="projects.html" class="btn-light">Browse All Projects &amp; Filters &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION C: WHY CHOOSE DIGIFRONT DOOR -->
+      <section class="section section-light" id="why-choose-us" aria-labelledby="why-title">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-light">The DigiFront Advantage</span>
+            <h2 class="section-title" id="why-title">Why local businesses partner with us.</h2>
+            <p class="section-subtitle">We don't use heavy website builders that take 6 seconds to load. We write clean, lightweight code designed to turn local visitors into phone calls.</p>
+          </div>
+
+          <div class="bento-grid">
+            <div class="card card-light" style="grid-column: span 4;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <h3 class="card-title">Lightning Speed (&lt;1s)</h3>
+              <p class="card-desc">Every 1-second delay reduces conversions by 7%. Our sites achieve perfect Core Web Vitals scores and open in an instant on mobile networks.</p>
+            </div>
+
+            <div class="card card-light" style="grid-column: span 4;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              </div>
+              <h3 class="card-title">Mobile-First Phone Calls</h3>
+              <p class="card-desc">Over 70% of local Google searches happen on mobile phones. We place prominent, sticky call and navigation buttons right where thumbs can tap them.</p>
+            </div>
+
+            <div class="card card-light" style="grid-column: span 4;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <h3 class="card-title">Google Profile Synergy</h3>
+              <p class="card-desc">We format your meta data, schema markup, and profile links so Google understands your business categories and shows your site to nearby searchers.</p>
+            </div>
+
+            <div class="card card-light" style="grid-column: span 4;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <h3 class="card-title">Transparent One-Time Costs</h3>
+              <p class="card-desc">No hidden monthly platform rents. You get clear upfront quotes, full code ownership, and no lock-in contracts.</p>
+            </div>
+
+            <div class="card card-light" style="grid-column: span 4;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              </div>
+              <h3 class="card-title">Direct Communication</h3>
+              <p class="card-desc">You talk directly to the engineer designing and coding your website. Fast responses, zero middlemen, and clear project updates.</p>
+            </div>
+
+            <div class="card card-light" style="grid-column: span 4;">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </div>
+              <h3 class="card-title">Post-Launch Support</h3>
+              <p class="card-desc">We don't vanish after deployment. We handle your domain connection, SSL certificate, test your forms, and offer optional care plans.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION D: PROCESS PREVIEW (4-STAGE WORKFLOW) -->
+      <section class="section section-dark" id="how-it-works" aria-labelledby="process-title">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-accent">How It Works</span>
+            <h2 class="section-title" id="process-title">From first message to live website in 4 steps.</h2>
+            <p class="section-subtitle">A straightforward, stress-free process designed for busy business owners.</p>
+          </div>
+
+          <div class="timeline">
+            <!-- Step 1 -->
+            <div class="timeline-step">
+              <div class="timeline-num">1</div>
+              <div class="timeline-card">
+                <h3>Discovery &amp; Strategy</h3>
+                <p>We review your existing Google profile, your local competitors, and discuss what services drive your highest profits.</p>
+                <div class="timeline-deliverable">&check; Scope roadmap &amp; upfront price quote</div>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="timeline-step">
+              <div class="timeline-num">2</div>
+              <div class="timeline-card">
+                <h3>Design &amp; Approval</h3>
+                <p>We craft a modern interactive mockup tailored to your brand, customer journey, and clear calls to action.</p>
+                <div class="timeline-deliverable">&check; Visual prototype &amp; review round</div>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="timeline-step">
+              <div class="timeline-num">3</div>
+              <div class="timeline-card">
+                <h3>Development &amp; SEO Optimization</h3>
+                <p>We write clean, semantic HTML, modern CSS, and lightweight JS. We configure local schema and Core Web Vitals speed tests.</p>
+                <div class="timeline-deliverable">&check; 100% responsive, accessible code</div>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="timeline-step">
+              <div class="timeline-num">4</div>
+              <div class="timeline-card">
+                <h3>Launch &amp; Google Profile Integration</h3>
+                <p>We connect your custom domain, set up free SSL, submit your sitemap to Google, and connect your link to your Google Business Profile.</p>
+                <div class="timeline-deliverable">&check; Live website ready to receive customer calls</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 48px;">
+            <a href="how-it-works.html" class="btn-ghost">View Detailed 9-Step Process &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION E: PRICING PREVIEW -->
+      <section class="section section-light" id="pricing-preview" aria-labelledby="pricing-preview-title">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge badge-light">Transparent Pricing</span>
+            <h2 class="section-title" id="pricing-preview-title">Simple, honest website packages.</h2>
+            <p class="section-subtitle">No monthly subscription locks. Clear one-time investment with transparent deliverables.</p>
+          </div>
+
+          <div class="pricing-grid">
+            <!-- Starter -->
+            <div class="card card-light pricing-card">
+              <h3 class="pricing-name">Starter Website</h3>
+              <p class="pricing-desc">For local trades &amp; solo businesses needing an immediate professional presence.</p>
+              <div class="pricing-price-wrap">
+                <span class="pricing-currency">$</span>
+                <span class="pricing-amount">299</span>
+                <span class="pricing-period">one-time</span>
+              </div>
+              <ul class="card-feature-list">
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> 1 to 3 custom responsive pages</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Google Business Profile link setup</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Click-to-call &amp; contact form</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> 5-7 business days delivery</li>
+              </ul>
+              <div style="margin-top:auto;">
+                <a href="contact.html?package=Starter%20Website&amp;est=$299" class="btn-dark" style="width:100%; text-align:center;">Choose Starter &rarr;</a>
+              </div>
+            </div>
+
+            <!-- Business (Popular) -->
+            <div class="card card-light pricing-card is-popular">
+              <span class="pricing-popular-badge">Most Popular</span>
+              <h3 class="pricing-name">Business Website</h3>
+              <p class="pricing-desc">For growing clinics, firms, and service brands looking to dominate local search.</p>
+              <div class="pricing-price-wrap">
+                <span class="pricing-currency">$</span>
+                <span class="pricing-amount">599</span>
+                <span class="pricing-period">one-time</span>
+              </div>
+              <ul class="card-feature-list">
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> 4 to 7 custom responsive pages</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Full Google Maps &amp; reviews sync</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Local SEO schema &amp; fast WebP pipeline</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> 10-14 business days delivery</li>
+              </ul>
+              <div style="margin-top:auto;">
+                <a href="contact.html?package=Business%20Website&amp;est=$599" class="btn-accent" style="width:100%; text-align:center;">Choose Business &rarr;</a>
+              </div>
+            </div>
+
+            <!-- Premium / Custom -->
+            <div class="card card-light pricing-card">
+              <h3 class="pricing-name">Growth / Custom</h3>
+              <p class="pricing-desc">For established companies requiring custom animations, portals, or e-commerce.</p>
+              <div class="pricing-price-wrap">
+                <span class="pricing-currency">$</span>
+                <span class="pricing-amount">999</span>
+                <span class="pricing-period">starting at</span>
+              </div>
+              <ul class="card-feature-list">
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> 8 to 15 custom pages or catalog</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Interactive custom animations &amp; filters</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Online booking engine / store checkout</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="4"/></svg> Priority development &amp; 30-day support</li>
+              </ul>
+              <div style="margin-top:auto;">
+                <a href="pricing.html#calculator" class="btn-dark" style="width:100%; text-align:center;">Use Quote Calculator &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+          <p style="text-align: center; margin-top: 24px; font-size: 13px; color: var(--muted);">All prices shown in USD. Final quote provided after confirming specific project scope.</p>
+        </div>
+      </section>
+
+      <!-- SECTION F: FAQ PREVIEW -->
+      <section class="section section-dark" id="faq-preview" aria-labelledby="faq-preview-title">
+        <div class="container container-narrow">
+          <div class="section-header">
+            <span class="badge badge-accent">Got Questions?</span>
+            <h2 class="section-title" id="faq-preview-title">Frequently asked questions.</h2>
+            <p class="section-subtitle">Everything you need to know about getting your business website online.</p>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-item">
+              <button class="accordion-header" type="button" aria-expanded="false">
+                <span>Why do I need a website if I already have a Google Business Profile?</span>
+                <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+              </button>
+              <div class="accordion-content">
+                <p>When customers search for local services on Google Maps, up to 60% click the "Website" button before deciding whether to call. If your profile doesn't have a website—or links to an empty social page—many potential clients assume you're inactive and switch to your competitor who has an informative, trustworthy website.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-header" type="button" aria-expanded="false">
+                <span>Do you guarantee that my business will rank #1 on Google?</span>
+                <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+              </button>
+              <div class="accordion-content">
+                <p>No honest agency can guarantee a #1 ranking on Google, as Google's algorithm evaluates dozens of factors including your physical proximity, review history, and domain age. What we do guarantee is building a technically flawless foundation: lightning-fast loading speeds, clean semantic HTML, local schema markup, and complete mobile optimization so Google has every reason to rank your site prominently.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-header" type="button" aria-expanded="false">
+                <span>Do I own the website after it is built?</span>
+                <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+              </button>
+              <div class="accordion-content">
+                <p>Yes, 100%. Upon full payment, you own all the code, assets, content, and design. There are no proprietary lock-ins or mandatory platform subscriptions. You can host it wherever you prefer, or we can host and maintain it for you under our optional care plans.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-header" type="button" aria-expanded="false">
+                <span>How long does it take from start to finish?</span>
+                <span class="accordion-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+              </button>
+              <div class="accordion-content">
+                <p>Our standard Starter Website typically delivers within 5 to 7 business days once we have your basic information. Business websites take 10 to 14 business days. Custom and e-commerce platforms usually take 2 to 4 weeks depending on scope.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 36px;">
+            <a href="faq.html" class="btn-ghost">View All 15+ FAQ Answers &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION G: UPGRADED FINAL CONVERSION SECTION -->
+      <section class="close" id="contact">
+        <div class="container container-narrow">
+          <h2>Ready to open your door online?</h2>
+          <p>Tell us about your business. We will show you what your Google profile could look like with a high-performing website that drives real calls.</p>
+          
+          <div class="cta" style="margin-top: 36px;">
+            <a class="btn-accent" href="contact.html">Get a Free Custom Quote &rarr;</a>
+            <a class="btn-light" href="mailto:digifrontdoor7@gmail.com">digifrontdoor7@gmail.com</a>
+            <a class="btn-ghost" href="tel:03316479439">Call 03316479439</a>
+            <button class="btn-ghost" type="button" data-copy="digifrontdoor7@gmail.com">Copy Email</button>
+          </div>
+
+          <div style="margin-top: 32px; display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; font-size: 13.5px; color: #a3a1be;">
+            <span>&check; 24-Hour Inquiry Response</span>
+            <span>&check; Free Requirement Audit</span>
+            <span>&check; Zero Obligation Quote</span>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /#main-content -->
+  </main>
+
+  <!-- Case Study Modal (Shared Component) -->
+  <div class="modal-backdrop" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+        <span class="badge badge-accent" id="modalCategory">Category</span>
+        <span class="project-status-tag" id="modalStatus">Concept Demo</span>
+      </div>
+      <h3 id="modalTitle" style="font-size: 26px; font-weight: 700; margin-bottom: 8px;">Project Title</h3>
+      <p id="modalTagline" style="font-size: 15px; color: #b7b5cb; margin-bottom: 24px;">Project Tagline</p>
+
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px;">The Challenge</h4>
+        <p id="modalChallenge" style="font-size: 14.5px; color: #9f9cb8; line-height: 1.6;"></p>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px;">Our Solution</h4>
+        <p id="modalSolution" style="font-size: 14.5px; color: #9f9cb8; line-height: 1.6;"></p>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <h4 style="font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px;">Key Deliverables</h4>
+        <ul id="modalDeliverables" class="card-feature-list" style="margin:0;"></ul>
+      </div>
+
+      <div style="margin-bottom: 28px;">
+        <h4 style="font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px;">Technologies</h4>
+        <div id="modalTech" class="tech-pills"></div>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a id="modalCtaBtn" href="contact.html" class="btn-accent" style="flex:1; text-align:center;">Request a Site Like This &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="index.html" style="color: #fff;">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="4" y="1.5" width="12" height="17" rx="2" stroke="#e8742f" stroke-width="2"/>
+              <circle cx="12.5" cy="10.5" r="1.3" fill="#e8742f"/>
+            </svg>
+            DigiFront Door
+          </a>
+          <p>We craft high-performing, bespoke websites for local businesses, connected directly to your Google presence so customers stop leaving and start calling.</p>
+          <div class="footer-status">
+            <span class="status-dot"></span>
+            <span>Available for new projects</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="services.html#google-integration">Google Profile Website</a></li>
+            <li><a href="services.html#custom-business">Business Websites</a></li>
+            <li><a href="services.html#landing-pages">Landing Pages</a></li>
+            <li><a href="services.html#ecommerce">Local E-commerce</a></li>
+            <li><a href="services.html#speed-seo">Speed &amp; SEO Tuning</a></li>
+            <li><a href="services.html#maintenance">Maintenance Care</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">All Services</a></li>
+            <li><a href="projects.html">Portfolio &amp; Demos</a></li>
+            <li><a href="pricing.html">Pricing &amp; Calculator</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="about.html">About DigiFront Door</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Direct Contact</h4>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <a href="mailto:digifrontdoor7@gmail.com">digifrontdoor7@gmail.com</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <a href="tel:03316479439">03316479439</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              <span>Response within 24 business hours</span>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <div class="cap" id="cap1">
-        <h2>Customers check Google before they call.</h2>
-        <p>If your profile has no website, many of them move on to the next business.</p>
-      </div>
-      <div class="cap" id="cap2">
-        <h2>We open the door for you.</h2>
-        <p>A fast, simple website, connected to your Google profile, so more searches turn into leads.</p>
-      </div>
-
-      <div class="scroll" id="hint" aria-hidden="true">Scroll
-        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1.5v9M2.5 7 6 10.5 9.5 7"/></svg>
+      <div class="footer-bottom">
+        <div>&copy; <span class="current-year">2026</span> DigiFront Door. All rights reserved.</div>
+        <div class="footer-legal-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="sitemap.xml">Sitemap</a>
+        </div>
+        <button class="btn-back-to-top" id="backToTop" type="button" aria-label="Back to top">
+          Back to top &uarr;
+        </button>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <section class="close" id="contact">
-    <h2>Ready to open your door?</h2>
-    <p>Tell us about your business. We will show you what your Google profile could look like with a website.</p>
-    <div class="cta">
-      <a class="btn-light" href="mailto:digifrontdoor7@gmail.com">digifrontdoor7@gmail.com</a>
-      <a class="btn-ghost" href="tel:03316479439">03316479439</a>
-    </div>
-    <footer>&copy; <span id="yr">2026</span> DigiFront Door</footer>
-  </section>
-</main>
-
-<script>
-(() => {
-  const TOTAL = 240;
-  const EMBED = typeof FRAMES !== 'undefined';          // single-file build carries its frames inline
-  const path = n => EMBED ? FRAMES[n - 1] : `frames/frame_${String(n).padStart(3, '0')}.webp`;
-  const small = matchMedia('(max-width:768px)').matches || (navigator.deviceMemory && navigator.deviceMemory <= 4);
-  const STEP = small ? 2 : 1;                           // lighter on phones / low-memory devices
-  const idx = []; for (let n = 1; n <= TOTAL; n += STEP) idx.push(n);
-  const COUNT = idx.length;
-  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const GATE = EMBED ? COUNT : Math.min(COUNT, 48);     // frames needed before the page opens
-
-  const $ = id => document.getElementById(id);
-  const track = $('track'), cv = $('cv'), ctx = cv.getContext('2d');
-  const hero = $('hero'), hint = $('hint'), cap1 = $('cap1'), cap2 = $('cap2');
-  const bar = $('loadBar'), loadEl = $('load'), gate = $('gate'), gateBar = $('gateBar'), gatePct = $('gatePct');
-  $('yr').textContent = new Date().getFullYear();
-  document.documentElement.style.overflow = 'hidden';
-  ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-
-  /* ---------- Frame loading: in order, pre-decoded, 8 at a time ---------- */
-  const imgs = new Array(COUNT);
-  let loaded = 0, next = 0, inflight = 0, cw = 0, ch = 0, dirty = true, opened = false;
-
-  function progress() {
-    bar.style.width = (loaded / COUNT * 100) + '%';
-    const g = Math.min(1, loaded / GATE);
-    gateBar.style.width = (g * 100) + '%'; gatePct.textContent = Math.round(g * 100) + '%';
-    if (!opened && loaded >= GATE) {
-      opened = true; gate.classList.add('off');
-      document.documentElement.style.overflow = '';
-      readScroll(); current = target; dirty = true;
-      setTimeout(() => gate.remove(), 600);
-    }
-    if (loaded === COUNT) loadEl.classList.add('done');
-  }
-  function pump() {
-    while (next < COUNT && inflight < 8) {
-      const i = next++, im = new Image(); inflight++;
-      const fin = ok => { if (ok) imgs[i] = im; inflight--; loaded++; dirty = true; progress(); pump(); };
-      im.onload = () => (im.decode ? im.decode().then(() => fin(true), () => fin(true)) : fin(true));
-      im.onerror = () => fin(false);
-      im.src = path(idx[i]);
-    }
-  }
-
-  /* ---------- Canvas sizing + cover draw ---------- */
-  function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    cw = Math.round(innerWidth * dpr); ch = Math.round(innerHeight * dpr);
-    cv.width = cw; cv.height = ch; ctx.imageSmoothingQuality = 'high'; dirty = true;
-  }
-  addEventListener('resize', resize); resize();
-
-  function nearest(i) {
-    for (let k = i; k >= 0; k--) if (imgs[k]) return imgs[k];
-    for (let k = i + 1; k < COUNT; k++) if (imgs[k]) return imgs[k];
-    return null;
-  }
-  function paint(im, alpha) {
-    const s = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
-    const w = im.naturalWidth * s, h = im.naturalHeight * s;
-    ctx.globalAlpha = alpha; ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h); ctx.globalAlpha = 1;
-  }
-  /* f is fractional: blend neighbouring frames so slow scrolling glides instead of stepping */
-  function draw(f) {
-    const i0 = Math.floor(f), a = f - i0, i1 = Math.min(i0 + 1, COUNT - 1);
-    const A = nearest(i0); if (!A) return;
-    paint(A, 1);
-    const B = imgs[i1];
-    if (B && B !== A && a > 0.01) paint(B, a);
-  }
-
-  /* ---------- Scroll mapping ---------- */
-  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-  const win = (p, a, b, e = 0.04) => clamp((p - a) / e) * (1 - clamp((p - (b - e)) / e));
-  let target = 0, current = 0;
-
-  function readScroll() {
-    const r = track.getBoundingClientRect();
-    target = clamp(-r.top / (r.height - innerHeight));
-  }
-  addEventListener('scroll', readScroll, { passive: true });
-  readScroll(); current = target;
-
-  function ui(p) {
-    const h = 1 - clamp(p / 0.12);
-    hero.style.opacity = h;
-    hero.style.transform = `translateY(${(-24 * (1 - h)).toFixed(1)}px)`;
-    hero.style.pointerEvents = h < 0.2 ? 'none' : '';
-    hint.style.opacity = 1 - clamp(p / 0.06);
-
-    const a = win(p, 0.17, 0.40), b = win(p, 0.42, 0.62);
-    cap1.style.opacity = a; cap2.style.opacity = b;
-    const mob = innerWidth <= 760;
-    const shift = (v, d) => `translateY(${mob ? '0px' : '-50%'}) translateY(${((1 - v) * d).toFixed(1)}px)`;
-    cap1.style.transform = shift(a, 18); cap2.style.transform = shift(b, 18);
-  }
-
-  let last = performance.now(), shownF = -1;
-  function frame(now) {
-    const dt = Math.min(0.05, (now - last) / 1000); last = now;
-    const k = reduce ? 1 : 1 - Math.exp(-dt / 0.085);   // frame-rate independent easing
-    current += (target - current) * k;
-    if (Math.abs(target - current) < 0.00005) current = target;
-    const f = current * (COUNT - 1);
-    if (dirty || Math.abs(f - shownF) > 0.002) { draw(f); shownF = f; dirty = false; }
-    ui(current);
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-  pump();
-
-  /* ---------- Anchor seeking ---------- */
-  function seek(p) {
-    const top = track.offsetTop + p * (track.offsetHeight - innerHeight);
-    scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' });
-  }
-  document.querySelectorAll('[data-seek]').forEach(el =>
-    el.addEventListener('click', e => { e.preventDefault(); seek(parseFloat(el.dataset.seek)); }));
-})();
-</script>
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/home-scroll.js"></script>
+  <script src="js/portfolio.js"></script>
+  <script src="js/faq.js"></script>
 </body>
 </html>
