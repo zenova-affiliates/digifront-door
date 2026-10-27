@@ -6,21 +6,26 @@
 (() => {
   'use strict';
 
-  // Configurable Pricing Matrix
+  // Configurable Pricing Matrix (Updated with Sustainable, High-Converting Rates)
   const PRICING_CONFIG = {
     packages: {
-      'starter': { name: 'Starter Website (1-3 Pages)', basePrice: 299, deliveryDays: '5-7 Days' },
-      'business': { name: 'Business Website (4-7 Pages)', basePrice: 599, deliveryDays: '10-14 Days' },
-      'growth': { name: 'Growth / Premium (8-15 Pages)', basePrice: 999, deliveryDays: '2-3 Weeks' },
-      'ecommerce': { name: 'E-commerce Storefront', basePrice: 1299, deliveryDays: '3-4 Weeks' }
+      'starter': { name: 'Starter Website (1-3 Pages)', basePrice: 249, deliveryDays: '5-7 Days' },
+      'business': { name: 'Business Website (4-7 Pages)', basePrice: 499, deliveryDays: '10-14 Days' },
+      'growth': { name: 'Growth / Premium (8-15 Pages)', basePrice: 849, deliveryDays: '2-3 Weeks' },
+      'ecommerce': { name: 'E-commerce Storefront', basePrice: 1099, deliveryDays: '3-4 Weeks' }
+    },
+    animationLevels: {
+      'clean': { name: 'Clean & Minimal Transitions', price: 0 },
+      'interactive': { name: 'Interactive Micro-interactions', price: 129 },
+      'cinematic': { name: 'Full Cinematic Scroll & Canvas Visuals', price: 249 }
     },
     addons: {
-      'google-profile': { name: 'Google Business Profile & Map Sync', price: 120 },
-      'animation': { name: 'Cinematic / Custom Micro-interactions', price: 150 },
-      'copywriting': { name: 'Professional Content & Copywriting', price: 180 },
-      'booking': { name: 'Online Booking & Scheduling Engine', price: 140 },
-      'seo': { name: 'Advanced Local SEO & Schema Architecture', price: 160 },
-      'maintenance': { name: '1-Year Maintenance & Care Plan', price: 390 }
+      'google-profile': { name: 'Google Business Profile & Map Sync', price: 99 },
+      'animation': { name: 'Custom Animations & Micro-interactions', price: 129 },
+      'copywriting': { name: 'Professional Content & Copywriting', price: 149 },
+      'booking': { name: 'Online Booking & Scheduling Engine', price: 119 },
+      'seo': { name: 'Advanced Local SEO & Schema Architecture', price: 139 },
+      'maintenance': { name: '1-Year Maintenance & Care Plan', price: 329 }
     },
     timelineMultiplier: {
       'standard': { multiplier: 1.0, label: 'Standard Delivery' },
@@ -32,6 +37,7 @@
   if (!form) return;
 
   const packageRadios = form.querySelectorAll('input[name="quote_package"]');
+  const animationRadios = form.querySelectorAll('input[name="quote_animation"]');
   const addonCheckboxes = form.querySelectorAll('input[name="quote_addons"]');
   const timelineSelect = form.querySelector('select[name="quote_timeline"]');
 
@@ -50,6 +56,18 @@
     const pkg = PRICING_CONFIG.packages[selectedPackageKey] || PRICING_CONFIG.packages['business'];
     let subtotal = pkg.basePrice;
     const selectedAddons = [];
+
+    // Optional animation tier if selected via radio
+    let selectedAnimation = null;
+    animationRadios.forEach(radio => {
+      if (radio.checked && PRICING_CONFIG.animationLevels[radio.value]) {
+        selectedAnimation = PRICING_CONFIG.animationLevels[radio.value];
+        if (selectedAnimation.price > 0) {
+          subtotal += selectedAnimation.price;
+          selectedAddons.push({ name: selectedAnimation.name, price: selectedAnimation.price });
+        }
+      }
+    });
 
     addonCheckboxes.forEach(chk => {
       if (chk.checked && PRICING_CONFIG.addons[chk.value]) {
@@ -95,6 +113,9 @@
       params.set('package', pkg.name);
       params.set('est', `$${total}`);
       params.set('timeline', timelineData.label);
+      if (selectedAnimation) {
+        params.set('animation', selectedAnimation.name);
+      }
       if (selectedAddons.length > 0) {
         params.set('addons', selectedAddons.map(a => a.name).join(', '));
       }
@@ -104,6 +125,7 @@
 
   // Event Listeners
   packageRadios.forEach(radio => radio.addEventListener('change', calculateQuote));
+  animationRadios.forEach(radio => radio.addEventListener('change', calculateQuote));
   addonCheckboxes.forEach(chk => chk.addEventListener('change', calculateQuote));
   if (timelineSelect) {
     timelineSelect.addEventListener('change', calculateQuote);
